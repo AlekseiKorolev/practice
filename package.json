@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -D build",
+    "deploy": "gh-pages -d build",
     "start": "cross-env PORT=10888 react-scripts start",
     "build": "react-scripts build"
   },
@@ -34,5 +34,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "homepage": "./"
+  "homepage": "https://github.com/AlekseiKorolev/practice"
 }
