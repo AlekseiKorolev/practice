@@ -17,12 +17,13 @@ const Home = ({ id, go, fetchedUser }) => (
 
 		<Group title="Профиль игрока">
 			<Div>
+				Текущий вид спорта <b>Футбол</b><br/><br/>
 				<Button size="xl" level="2" onClick={go} data-to="sports">
-					Выбор вида спорта
+					Выбрать вид спорта
 				</Button>
 				<br/>
 				<Button size="xl" level="2" onClick={go} data-to="search">
-					Поиск команды
+					Найти команду
 				</Button>
 			</Div>
 		</Group>
