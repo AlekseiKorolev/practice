@@ -4,7 +4,7 @@ import { Panel, ListItem, Button, Group, Div, Avatar, PanelHeader } from '@vkont
 
 const Home = ({ id, go, fetchedUser }) => (
 	<Panel id={id}>
-		<PanelHeader>Поиск спортивных мероприятий</PanelHeader>
+		<PanelHeader>Профиль</PanelHeader>
 		{fetchedUser &&
 		<Group title="Добро пожаловать!">
 			<ListItem
@@ -15,14 +15,14 @@ const Home = ({ id, go, fetchedUser }) => (
 			</ListItem>
 		</Group>}
 
-		<Group title="Выберите вид спорта">
+		<Group title="Профиль игрока">
 			<Div>
-				<Button size="xl" level="2" onClick={go} data-to="football">
-					Футбол
+				<Button size="xl" level="2" onClick={go} data-to="sports">
+					Выбор вида спорта
 				</Button>
 				<br/>
-				<Button size="xl" level="2" onClick={go} data-to="hockey">
-					Хоккей
+				<Button size="xl" level="2" onClick={go} data-to="search">
+					Поиск команды
 				</Button>
 			</Div>
 		</Group>

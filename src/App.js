@@ -6,6 +6,9 @@ import '@vkontakte/vkui/dist/vkui.css';
 import Home from './panels/Home';
 import Football from './panels/Football/Football';
 import Hockey from './panels/Hockey/Hockey';
+import Sports from './panels/Sports/Sports';
+import Search from './panels/Search/Search';
+import SearchResult from './panels/SearchResult/SearchResult';
 
 class App extends React.Component {
 	constructor(props) {
@@ -40,6 +43,9 @@ class App extends React.Component {
 				<Home id="home" fetchedUser={this.state.fetchedUser} go={this.go} />
 				<Football id="football" fetchedUser={this.state.fetchedUser} go={this.go}/>
 				<Hockey id="hockey" frtchedUser={this.state.fetchedUser} go={this.go}/>
+				<Search id="search" frtchedUser={this.state.fetchedUser} go={this.go}/>
+				<Sports id="sports" frtchedUser={this.state.fetchedUser} go={this.go}/>
+				<SearchResult id="searchResult" frtchedUser={this.state.fetchedUser} go={this.go}/>
 			</View>
 		);
 	}
