@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/AlekseiKorolev/practice/precache-manifest.9d525fe73f103c5be60082c74156c9a4.js"
+  "/practice/precache-manifest.2c9bd404f7a0b2407d82a6a48f8c022f.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/AlekseiKorolev/practice/index.html", {
+workbox.routing.registerNavigationRoute("/practice/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
