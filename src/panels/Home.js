@@ -14,7 +14,6 @@ const Home = ({ id, go, fetchedUser }) => (
 				{`${fetchedUser.first_name} ${fetchedUser.last_name}`}
 			</ListItem>
 		</Group>}
-
 		<Group title="Профиль игрока">
 			<Div>
 				Текущий вид спорта <b>Футбол</b><br/><br/>
@@ -27,6 +26,7 @@ const Home = ({ id, go, fetchedUser }) => (
 				</Button>
 			</Div>
 		</Group>
+			<Div style={{ textAlign: 'center' }}>Приложение доступно только в ВК</Div>
 	</Panel>
 );
 

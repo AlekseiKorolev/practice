@@ -31,6 +31,7 @@ class App extends React.Component {
 			}
 		});
 		connect.send('VKWebAppGetUserInfo', {});
+		console.log(this.state);
 	}
 
 	go = (e) => {
