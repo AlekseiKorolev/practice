@@ -10,6 +10,8 @@ import Sports from './panels/Sports/Sports';
 import Search from './panels/Search/Search';
 import SearchResult from './panels/SearchResult/SearchResult';
 
+import {getData} from './util/requests';
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -20,6 +22,10 @@ class App extends React.Component {
 		};
 	}
 
+	printRequest(e){
+		console.log(e);
+	}
+
 	componentDidMount() {
 		connect.subscribe((e) => {
 			switch (e.detail.type) {
@@ -27,16 +33,17 @@ class App extends React.Component {
 					this.setState({ fetchedUser: e.detail.data });
 					break;
 				default:
-					console.log(e.detail.type);
+					//
 			}
+			getData(this.printRequest);
+			console.table(e.detail.data);
 		});
 		connect.send('VKWebAppGetUserInfo', {});
-		console.log(this.state);
 	}
 
 	go = (e) => {
 		this.setState({ activePanel: e.currentTarget.dataset.to })
-	};
+	}
 
 	render() {
 		return (

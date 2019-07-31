@@ -26,7 +26,6 @@ const Home = ({ id, go, fetchedUser }) => (
 				</Button>
 			</Div>
 		</Group>
-			<Div style={{ textAlign: 'center' }}>Приложение доступно только в ВК</Div>
 	</Panel>
 );
 
