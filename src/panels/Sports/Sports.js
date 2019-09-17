@@ -22,9 +22,9 @@ const Sports = props => (
 					Футбол
 				</Button>
 				<br/>
-				<Button size="xl" level="2" onClick={props.go} data-to="hockey">
+				{/*<Button size="xl" level="2" onClick={props.go} data-to="hockey">
 					Хоккей
-				</Button>
+				</Button>*/}
 			</Div>
 		</Group>
 	</Panel>

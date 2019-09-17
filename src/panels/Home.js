@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Panel, ListItem, Button, Group, Div, Avatar, PanelHeader } from '@vkontakte/vkui';
 
-const Home = ({ id, go, fetchedUser }) => (
+const Home = ({ id, go, fetchedUser, userData }) => (
 	<Panel id={id}>
 		<PanelHeader>Профиль</PanelHeader>
 		{fetchedUser &&
@@ -16,13 +16,13 @@ const Home = ({ id, go, fetchedUser }) => (
 		</Group>}
 		<Group title="Профиль игрока">
 			<Div>
-				Текущий вид спорта <b>Футбол</b><br/><br/>
+				Текущий вид спорта <b>{userData.type}</b><br/><br/>
 				<Button size="xl" level="2" onClick={go} data-to="sports">
 					Выбрать вид спорта
 				</Button>
 				<br/>
 				<Button size="xl" level="2" onClick={go} data-to="search">
-					Найти команду
+					Поиск
 				</Button>
 			</Div>
 		</Group>

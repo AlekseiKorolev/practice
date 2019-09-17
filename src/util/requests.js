@@ -1,12 +1,57 @@
 /*** For php server ***/
-export const getData = (callback) => {
+export const getData = (id, exist, noExist) => {
   const xhr = new XMLHttpRequest();
-  const host = "http://fizkulturniki.site/";
-  xhr.open('GET', host + 'getuserID.php');
+  const host = "https://fizkulturniki.site/";
+  xhr.open('GET', host + 'checkUser.php/?id=' + id);
+  xhr.send();
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4 && xhr.status === 200){
+      if(xhr.response){
+        exist(xhr.response)
+      }else{
+        noExist(id, xhr.response)
+      }
+    }
+  };
+  //xhr.open('GET',host + 'getuserID.php?q=' + userID, true);
+}
+
+export const addUser = (userData, callback) => {
+  const xhr = new XMLHttpRequest();
+  const host = "https://fizkulturniki.site/";
+  xhr.open('GET', host + 'addUser.php/?id=' + userData.id + '&first_name=' +
+    userData.first_name + '&last_name=' + userData.last_name +
+    '&city=' + userData.city.title);
   xhr.send();
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4 && xhr.status === 200){
       callback(xhr.response)
+    }
+  };
+  //xhr.open('GET',host + 'getuserID.php?q=' + userID, true);
+}
+
+export const addData = (id, typeOfData, data, callback) => {
+  const xhr = new XMLHttpRequest();
+  const host = "https://fizkulturniki.site/";
+  xhr.open('GET', host + 'addData.php/?id=' + id+'&data='+typeOfData+'&value='+data);
+  xhr.send();
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4 && xhr.status === 200){
+      callback(xhr.response);
+    }
+  };
+  //xhr.open('GET',host + 'getuserID.php?q=' + userID, true);
+}
+
+export const searchData = (data, callback) => {
+  const xhr = new XMLHttpRequest();
+  const host = "https://fizkulturniki.site/";
+  xhr.open('GET', host + 'searchData.php/?side=' + data.side + '&role='+ data.role + '&format=' + data.format + '&skill=' + data.skill);
+  xhr.send();
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4 && xhr.status === 200){
+      callback(xhr.response);
     }
   };
   //xhr.open('GET',host + 'getuserID.php?q=' + userID, true);
