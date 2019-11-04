@@ -1,47 +1,73 @@
 /*** For php server ***/
-export const getData = (id, exist, noExist) => {
-  const xhr = new XMLHttpRequest();
-  const host = "https://fizkulturniki.site/";
-  xhr.open('GET', host + 'checkUser.php/?id=' + id);
-  xhr.send();
-  xhr.onreadystatechange = () => {
-    if(xhr.readyState === 4 && xhr.status === 200){
-      if(xhr.response){
-        exist(xhr.response)
-      }else{
-        noExist(id, xhr.response)
-      }
-    }
+
+export const getData = (id, exist, noExist) => { //Получаем информацию о зарегистрированном пользователе
+  const url = 'https://fizkulturniki.site/checkUser.php/?id=' + id;
+
+  let xmlHttpRequest = function() {
+    return new Promise(function(resolve, reject) {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', url);
+      //xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+      xhr.onreadystatechange = function() {
+        if (this.readyState === 4) {
+          if (this.status >= 200 && this.status < 400) {
+            resolve(this.response);
+          } else {
+            reject(new Error('Error')); // Обработка ошибки
+        }
+       }
+      };
+      xhr.send();
+    });
   };
-  //xhr.open('GET',host + 'getuserID.php?q=' + userID, true);
+  xmlHttpRequest()
+    .then(function(text){
+      if(text === 'not found'){
+        noExist(id)
+      } else {
+        exist(text)
+      }
+    }).catch(function(err){
+      console.error(err);
+    });
 }
 
-export const addUser = (userData, callback) => {
+export const addUser = (userData, callback) => { //Добавляем информацию о новом пользователе
   const xhr = new XMLHttpRequest();
   const host = "https://fizkulturniki.site/";
   xhr.open('GET', host + 'addUser.php/?id=' + userData.id + '&first_name=' +
     userData.first_name + '&last_name=' + userData.last_name +
-    '&city=' + userData.city.title);
+    '&city_title=' + userData.city.title+'&city_id=' + userData.city.id);
   xhr.send();
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4 && xhr.status === 200){
       callback(xhr.response)
     }
   };
-  //xhr.open('GET',host + 'getuserID.php?q=' + userID, true);
 }
 
-export const addData = (id, typeOfData, data, callback) => {
+export const addData = (id, tableName, typeOfData, data, callback) => {//ДОбавляем данные
   const xhr = new XMLHttpRequest();
   const host = "https://fizkulturniki.site/";
-  xhr.open('GET', host + 'addData.php/?id=' + id+'&data='+typeOfData+'&value='+data);
+  xhr.open('GET', host + 'addData.php/?id=' + id+'&tableName='+tableName+'&data='+typeOfData+'&value='+data);
   xhr.send();
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4 && xhr.status === 200){
       callback(xhr.response);
     }
   };
-  //xhr.open('GET',host + 'getuserID.php?q=' + userID, true);
+}
+
+export const deleteData = (id, tableName, callback) => {//удаляем данные
+  const xhr = new XMLHttpRequest();
+  const host = "https://fizkulturniki.site/";
+  xhr.open('GET', host + 'deleteData.php/?id=' + id+'&tableName='+tableName);
+  xhr.send();
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4 && xhr.status === 200){
+      callback(xhr.response);
+    }
+  };
 }
 
 export const searchData = (data, callback) => {

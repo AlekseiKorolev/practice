@@ -16,8 +16,8 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   database: 'u0766695_sportevents',
   host: "31.31.198.65",
-  user: "u0766695_vksport",
-  password: "7Y7x7O9o"
+  user: "",
+  password: ""
 });
 
 //app.use(express.static('public'));

@@ -1,11 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {Panel, PanelHeader, HeaderButton, Div, Button, Group, platform, IOS, Select} from '@vkontakte/vkui';
-import Icon28ChevronBack from '@vkontakte/icons/dist/28/chevron_back';
-import Icon24Back from '@vkontakte/icons/dist/24/back';
+import {Div, Button, Select, FormLayoutGroup} from '@vkontakte/vkui';
 import {searchData} from '../../util/requests';
-
-const osname = platform();
 
 export class Search extends React.Component {
 	constructor(props){
@@ -34,7 +29,7 @@ export class Search extends React.Component {
 	}
 
 	searchResult(e){
-		console.log(e);
+		//console.log(e);
 		if(e){
 			this.setState({ searchResult: JSON.parse(e)});
 		}else{
@@ -47,8 +42,8 @@ export class Search extends React.Component {
 		//console.log(this.state.searchResult);
 		if(Array.isArray(this.state.searchResult)){
 			return this.state.searchResult.map( id => {
-					if (Number(id.id_vk) !== this.props.userId.id) 
-					return <li key={id.id_vk}><a href={"https://vk.com/id" + id.id_vk} target="_blank">{id.first_name + ' ' + id.last_name}</a></li>
+					if (Number(id.id_vk) !== this.props.userId.id)
+					return <li key={id.id_vk}><a href={"https://vk.com/id" + id.id_vk} target="_blank" rel="noopener noreferrer">{id.first_name + ' ' + id.last_name}</a></li>
 				});
 		}else{
 			return <div>{this.state.searchResult}</div>
@@ -57,14 +52,15 @@ export class Search extends React.Component {
 
 	render(){
 		return(
-			<Panel id={this.props.id}>
+			<FormLayoutGroup>
+			{/*<Panel id={this.props.id}>
 				<PanelHeader
 					left={<HeaderButton onClick={this.props.go} data-to="home">
 						{osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
 					</HeaderButton>}
 				>
 					Поиск
-				</PanelHeader>
+				</PanelHeader>*/}
 				<br/>
 				<Div style={{ padding: '0px 2rem' }}>
 					<Select name="side" top="Предпочитаемая сторона" placeholder="любое" onChange={this.changeState}>
@@ -102,7 +98,7 @@ export class Search extends React.Component {
 		    </Div>
 				<br/>
 				<Div>
-					<Button size="xl" level="1" onClick={this.startSearch}>
+					<Button size="xl" level="secondary" onClick={this.startSearch}>
 						Искать
 					</Button>
 				</Div>
@@ -111,34 +107,8 @@ export class Search extends React.Component {
 						{this.showSearchResult()}
 					</ul>
 				</Div>
-			</Panel>
+			{/*</Panel>*/}
+			</FormLayoutGroup>
 		);
 	}
 }
-/*const Search = props => (
-	<Panel id={props.id}>
-    <PanelHeader
-      left={<HeaderButton onClick={props.go} data-to="home">
-        {osname === IOS ? <Icon28ChevronBack/> : <Icon24Back/>}
-      </HeaderButton>}
-    >
-      Поиск команды
-    </PanelHeader>
-
-		<Group title="Поиск команды">
-			<Div>
-        Поиск команды для игры в <b>футбол, 6 x 6, левый полузащитник</b><br/><br/>
-				<Button size="xl" level="2" onClick={props.go} data-to="searchResult">
-					Поиск
-				</Button>
-			</Div>
-		</Group>
-	</Panel>
-);
-
-Search.propTypes = {
-	id: PropTypes.string.isRequired,
-	go: PropTypes.func.isRequired
-};
-
-export default Search;*/
