@@ -1,16 +1,9 @@
 import React from 'react';
 import {Div, Group, List, Cell} from '@vkontakte/vkui';
 import Icon24Users from '@vkontakte/icons/dist/24/users';
-import Icon24UserAdd from '@vkontakte/icons/dist/24/user_add';
+import Icon24Search from '@vkontakte/icons/dist/24/search';
 
 export class Sport extends React.Component {
-	constructor(props){
-		super(props);
-
-		this.state = {
-			activePanel : 'sportInfo'
-		}
-	}
 
 	sportInfo(e){
 		let text='';
@@ -61,7 +54,7 @@ export class Sport extends React.Component {
 						</Group>
 						<Group title="Инструменты">
 							<List>
-								<Cell expandable onClick={ () => this.props.changeActivePanel('panelSearch')  } before={<Icon24UserAdd />}>
+								<Cell expandable onClick={ () => this.props.changeActivePanel('panelSearch')  } before={<Icon24Search />}>
 									Поиск партнера
 								</Cell>
 								<Cell expandable onClick={ () => this.props.changeActivePanel('panelTeam')  } before={<Icon24Users />}>
@@ -83,7 +76,6 @@ export class Sport extends React.Component {
 							</List>
 						</Group>
 					</Group>
-
 				</div>
 		)
 	}

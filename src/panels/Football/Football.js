@@ -84,7 +84,7 @@ export class Football extends React.Component {
 						<Checkbox id='power' defaultChecked={this.checkState('power')} onChange={this.changeState}>Удар</Checkbox>
 						<Checkbox id='phisics' defaultChecked={this.checkState('phisics')} onChange={this.changeState}>Физика</Checkbox>
 					</FormLayoutGroup>
-					<FormLayoutGroup top="Основное преимущество">
+					<FormLayoutGroup top="Статус">
 						<Cell asideContent={<Switch id='active' defaultChecked={this.checkState('active')}/>} onChange={this.changeState}>
 							В поиске команды
 						</Cell>
